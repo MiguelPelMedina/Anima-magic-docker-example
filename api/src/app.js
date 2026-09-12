@@ -3,8 +3,10 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const compression = require('compression');
+const swaggerUi = require('swagger-ui-express');
 
 const routes = require('./routes');
+const swaggerSpec = require('./config/swagger');
 const notFound = require('./middlewares/notFound');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -19,6 +21,9 @@ app.use(express.json()); // parsea el body JSON de las peticiones
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev')); // logging de peticiones solo en desarrollo
 }
+
+// --- Documentación Swagger ---
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // --- Rutas ---
 app.use('/api', routes);

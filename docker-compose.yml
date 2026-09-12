@@ -23,7 +23,7 @@ services:
       start_period: 10s
 
   api:
-    build: ./api        # ← antes era ./app, ahora ./api
+    build: ./api
     container_name: magia_anima_api
     restart: unless-stopped
     depends_on:
