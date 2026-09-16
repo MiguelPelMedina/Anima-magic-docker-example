@@ -1,6 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+/*
+   Validadores
+*/
+const validarCampos = require('../middlewares/validarCampos');
+const {
+  validarIdHechizo,
+  validarQueryListado,
+  validarHechizo,
+} = require('../validators/hechizos.validator');
+
 const {
   listarHechizos,
   obtenerHechizoPorId,
@@ -72,7 +82,7 @@ const {
  *                   items:
  *                     $ref: '#/components/schemas/Hechizo'
  */
-router.get('/', listarHechizos);
+router.get('/',validarQueryListado , validarCampos, listarHechizos);
 
 /**
  * @swagger
@@ -107,7 +117,7 @@ router.get('/', listarHechizos);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/:id', obtenerHechizoPorId);
+router.get('/:id', validarIdHechizo, validarCampos, obtenerHechizoPorId);
 
 /**
  * @swagger
@@ -135,7 +145,7 @@ router.get('/:id', obtenerHechizoPorId);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-// router.post('/', crearHechizo);
+// router.post('/', validarHechizo, validarCampos, crearHechizo);
 
 /**
  * @swagger
@@ -167,7 +177,7 @@ router.get('/:id', obtenerHechizoPorId);
  *       400:
  *         description: ID no válido o error de validación
  */
-// router.put('/:id', actualizarHechizo);
+//router.put('/:id', validarIdHechizo, validarHechizo, validarCampos, actualizarHechizo);
 
 /**
  * @swagger
@@ -189,6 +199,6 @@ router.get('/:id', obtenerHechizoPorId);
  *       400:
  *         description: ID no válido
  */
-// router.delete('/:id', eliminarHechizo);
+// router.delete('/:id', validarIdHechizo, validarCampos, eliminarHechizo);
 
 module.exports = router;

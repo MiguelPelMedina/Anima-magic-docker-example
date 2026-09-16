@@ -35,7 +35,7 @@ app.get('/health', (req, res) => {
 });
 
 // --- Middlewares de error (siempre al final) ---
-//app.use(notFound);
-//app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
