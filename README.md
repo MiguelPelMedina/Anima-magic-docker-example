@@ -15,7 +15,7 @@ Vue.js
 The purpose of this proyect is to learn Docker with a full stack app.
 
 ## Imagenes
-![Captura 2](docs/images/Captura_2.png)
+![Captura 2](docs/images/Captura_3.png)
 ---
-![Captura 1](docs/images/Captura_1.png)
+![Captura 1](docs/images/Captura_4.png)
 
